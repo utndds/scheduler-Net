@@ -16,7 +16,7 @@ Lo importante de esto es que cuando prueben el proyecto solo ejecuten un ejemplo
 - **Job Complejo:** Se crea un job que edita el estado/atributos de un objeto en este caso el username de un Usuario. Como van a ver en el código lo que se propone es ver como cambiando el atributo del objeto tanto en el proceso main del programa como en el proceso job/scheduler se impacta tambien en el otro. Para esto demostrar esto lo que se hace es imprimir el nombre actual del usuario y cambiarlo por otro distinto, mostrando de que proceso viene cada output de consola.
 
 ### Documentación
-[Link oficial](https://www.quartz-scheduler.net/documentation/quartz-3.x/tutorial/index.html)
+[Link documentación - Quartz](https://www.quartz-scheduler.net/documentation/quartz-3.x/tutorial/index.html)
 
 
 
