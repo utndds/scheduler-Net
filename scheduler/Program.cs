@@ -35,8 +35,21 @@ namespace scheduler
 
             // Empieza a funcionar el scheduler
             sched.run();
-            
-            /*
+
+            // EJEMPLO JOB SIMPLE
+            // jobSimple(sched);
+
+            // EJEMPLO JOB CON EDICION DE OBJETOS
+            jobComplejo(sched);
+
+            // El scheduler se puede parar con este metodo
+            sched.stop();
+
+        }
+
+        public static void jobSimple(Scheduler sched)
+        {
+
             // EJEMPLO JOB SIMPLE
             // Creo job con la clase JobEjemplo que dentro de su metodo Execute define que es lo que se va a ejecutar
             IJobDetail job = JobBuilder.Create<JobEjemplo>()
@@ -55,26 +68,29 @@ namespace scheduler
                       .WithIntervalInSeconds(30)
                       .RepeatForever())
                   .Build();
-            
+
             // Adjunto el job al timer, y lo meto en el Scheduler
             sched.agregarTask(job, trigger);
 
             // Agrego un readline para llegar a ver el output de consola
             Console.ReadLine();
-            */
-            
+
+        }
+
+        private static void jobComplejo(Scheduler sched)
+        {
+
             // EJEMPLO JOB CON EDICION DE OBJETOS
             // Si queremos que nuestro Task sea capaz de editar objetos y que estos cambios se repliquen en otras partes
             // del programa debemos aclararlo debido a que trabajan con la idea de hilos distintos
             // es una explicacion un poco vaga pero util...
 
             // Creo un objeto usuario
-            Usuario usuario = new Usuario("admin","admin123");
+            Usuario usuario = new Usuario("admin", "admin123");
 
             // Guardo el objeto dentro un objeto diccionario para que pueda accederlo desde el job
             JobDataMap jobData = new JobDataMap();
             jobData.Add("usuario", usuario);
-
 
             IJobDetail jobComp = JobBuilder.Create<JobEjemploComp>()
                 .WithIdentity("trabajoEjemplo2", "grupoEjemplo")
@@ -104,10 +120,8 @@ namespace scheduler
             Console.WriteLine("------------------------------ ");
 
             System.Threading.Thread.Sleep(8000);
-            
-            // El scheduler se puede parar con este metodo 
-            sched.stop();
 
         }
+
     }
 }
